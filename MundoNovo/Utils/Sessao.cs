@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MundoNovo.Utils
 {
-    public class Sessão
+    public class Sessao
     {
 
         public static string RetornarGuidId()

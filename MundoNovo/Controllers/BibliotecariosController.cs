@@ -35,7 +35,7 @@ namespace MundoNovo.Controllers
             {
                 bibliotecario = BibliotecarioDAO.BuscarBibliotecarioPorId(loginId);
 
-                string guid = Sessão.RetornarGuidId();
+                string guid = Sessao.RetornarGuidId();
                 bibliotecario.guid = guid;
                 BibliotecarioDAO.EditarBibliotecario(bibliotecario);
                 return View("Index", BibliotecarioDAO.ListarBibliotecarios());
