@@ -1,43 +1,50 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mundo Novo</title>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Mundo Novo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="nav-item">@Html.ActionLink("Início", "Index", "Home")</li>
-                    <li class="nav-item">@Html.ActionLink("Sobre", "About", "Home")</li>
-                    <li class="nav-item">@Html.ActionLink("Contato", "Contact", "Home")</li>
-                </ul>
-                <div class="form-inline my-2 my-lg-0">
-                    @Html.ActionLink("Sair", "Sair", "Bibliotecarios", null, new { @class = "nav-link", @style = "color:white;" })
-                </div>
+    @if (HttpContext.Current.Session["GuidId"] == null)
+    {
+        Response.Redirect("~/Bibliotecarios/Login");
+    }
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    @Html.ActionLink("Listar Livros", "Index", "Livros", null, new { @class = "nav-link", @style = "color:white;" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Cadastrar livro", "Create", "Livros", null, new { @class = "nav-link", @style = "color:white;" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Usuários", "Index", "Bibliotecarios", null, new { @class = "nav-link", @style = "color:white;" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Empréstimos", "Index", "Emprestimos", null, new { @class = "nav-link", @style = "color:white;" })
+                </li>
+            </ul>
+            <div class="form-inline my-2 my-lg-0">
+                @Html.ActionLink("Sair", "Sair", "Bibliotecarios", null, new { @class = "nav-link", @style = "color:white;" })
             </div>
         </div>
-    </div>
-    <div class="container body-content">
+    </nav>
+
+    <div class="container" style="margin-top:50px;margin-bottom:50px">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Desenvolvido por Amália Cristina e Gabriela Bojarski</p>
-        </footer>
     </div>
+
+    <hr />
+    <footer style="text-align:center">
+        <p>
+            &copy; @DateTime.Now.Year - Desenvolvido por Amália Cristina e Gabriela Bojarski
+        </p>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

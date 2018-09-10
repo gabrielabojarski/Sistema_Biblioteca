@@ -1,22 +1,19 @@
 ﻿@model IEnumerable<MundoNovo.Models.Bibliotecario>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Início - Usuários";
+    Layout = "~/Views/Shared/Template.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Usuários</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Cadastrar novo usuário", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.login)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.guid)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.senha)
@@ -30,29 +27,26 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.login)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.guid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.senha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.matricula)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.senha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.matricula)
+            </td>
+            <td>
+                @Html.ActionLink("Alterar", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Remover", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
 
 </table>

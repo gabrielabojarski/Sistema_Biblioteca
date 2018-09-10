@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MundoNovo.Models.Livro>
+@using MundoNovo.Models
+@{
+    ViewBag.Title = "Busca";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Busca</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.autor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ano)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.categoria)
+        </th>
+    </tr>
+
+@foreach (Livro item in ViewBag.Livros) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.autor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ano.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.categoria.nome)
+        </td>
+        <td>
+            @Html.ActionLink("Emprestar", "Create", "Emprestimos", new { id = item.id }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Excluir", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>

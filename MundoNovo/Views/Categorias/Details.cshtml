@@ -1,0 +1,27 @@
+﻿@model MundoNovo.Models.Categoria
+
+@{
+    ViewBag.Title = "Detalhes Categoria";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalhes Categoria</h2>
+
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

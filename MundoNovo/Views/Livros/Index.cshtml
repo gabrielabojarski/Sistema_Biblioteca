@@ -1,0 +1,111 @@
+﻿@model IEnumerable<MundoNovo.Models.Livro>
+@using MundoNovo.Models
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Catálogo</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar Livro", "Create", "Livros", null, new { @class = "btn btn-primary" })<span>
+        @Html.ActionLink("Cadastrar Categoria", "Create", "Categorias", null, new { @class = "btn btn-info" })
+    </span>
+</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            @using (Html.BeginForm("Busca", "Livros", FormMethod.Get))
+            {
+                <label class="h4">Buscar livro</label>
+                <input type="text" class="form-control" name="busca" maxlength="150" placeholder="Insira o nome do livro" minlenght="3" />
+                <input type="submit" value="Buscar" class="btn btn-info" style="margin-top:5px;margin-bottom:20px;" />
+            }
+            @if (ViewBag.resultado != null)
+            {
+                <br />
+                <span style="color:red;">Livro não encontrado</span>
+            }
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.autor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ano)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.categoria)
+        </th>
+    </tr>
+
+    @if (Model != null)
+    {
+
+        @foreach (Livro item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.autor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ano.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.categoria.nome)
+                </td>
+                <td>
+                    @Html.ActionLink("Emprestar", "Create", "Emprestimos", new { id = item.id }, new { @class = "btn btn-success" }) |
+                    @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        foreach (Livro item in ViewBag.TodosLivros)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.autor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ano.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.categoria.nome)
+                </td>
+                <td>
+                    @Html.ActionLink("Emprestar", "Emprestimo", "Emprestimos", new { id = item.id }, new { @class = "btn btn-success" }) |
+                    @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+    }
+</table>
