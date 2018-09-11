@@ -158,6 +158,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BibliotecariosController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\EmprestimosController.cs" />
     <Compile Include="Controllers\LivrosController.cs" />
     <Compile Include="DAL\BibliotecarioDAO.cs" />
     <Compile Include="DAL\CategoriaDAO.cs" />
@@ -230,6 +231,9 @@
     <Content Include="Views\Livros\Delete.cshtml" />
     <Content Include="Views\Livros\Edit.cshtml" />
     <Content Include="Views\Livros\Index.cshtml" />
+    <Content Include="Views\Emprestimos\Index.cshtml" />
+    <Content Include="Views\Emprestimos\Emprestimo.cshtml" />
+    <Content Include="Views\Emprestimos\Darbaixa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

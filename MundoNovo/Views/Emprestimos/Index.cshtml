@@ -1,0 +1,104 @@
+﻿@model IEnumerable<MundoNovo.Models.Emprestimo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>Livro</th>
+        <th>Bibliotecario</th>
+        <th>Cliente</th>
+        <th>
+            @Html.DisplayNameFor(model => model.valor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dataPrazo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dataDevolucao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endereco)
+        </th>
+        <th>
+            Status
+        </th>
+        <th></th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.livro.titulo)</td>
+
+            <td>@Html.DisplayFor(modelItem => item.bibliotecario.matricula)</td>
+
+            <td>@Html.DisplayFor(modelItem => item.nome)</td>
+
+            <td>
+                @{
+                    if (DateTime.Parse(item.dataDevolucao).Year != 2000)
+                    {
+                        TimeSpan date = DateTime.Parse(item.dataDevolucao) - DateTime.Parse(item.dataPrazo);
+                        int totalDias = date.Days;
+
+                        if (item.status == -1)
+                        {
+                            item.valor = item.valor + (item.valor * 0.1 * totalDias);
+                        }
+                        else if (item.status == 2)
+                        {
+                            item.valor = item.valor + (item.valor * 0.1 * totalDias);
+                        }
+                    }
+
+                }
+
+                @Html.DisplayFor(modelItem => item.valor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataPrazo)
+            </td>
+            <td>
+                @{
+                    if (DateTime.Parse(item.dataDevolucao).Year != 2000)
+                    {
+                        @Html.DisplayFor(modelItem => item.dataDevolucao);
+                    }
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.endereco)
+            </td>
+            <td>
+                @{
+                    if (item.status == -1)
+                    {
+                        <span style="color: red">Atrasado</span>
+                    <td>@Html.ActionLink("Dar Baixa", "Darbaixa", new { id = item.id });</td>
+                }
+                else if (item.status == 0)
+                {
+                    <span style="color: darkgoldenrod">Pendente</span>
+                    <td>@Html.ActionLink("Dar Baixa", "Edit", new { id = item.id });</td>
+                }
+                else if (item.status == 1)
+                {
+                    <span style="color: darkgreen">Entregue</span>
+                }
+                else if (item.status == 2)
+                {
+                    <span style="color: orangered">Entregue com atraso</span>
+                }
+                }
+                </td>
+
+            </tr>
+        }
+
+</table>
