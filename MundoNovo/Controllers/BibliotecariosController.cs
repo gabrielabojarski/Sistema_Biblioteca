@@ -12,6 +12,7 @@ using MundoNovo.Utils;
 
 namespace MundoNovo.Controllers
 {
+    [Authorize]
     public class BibliotecariosController : Controller
     {
        // private Context db = new Context();
@@ -22,6 +23,7 @@ namespace MundoNovo.Controllers
             return View(BibliotecarioDAO.ListarBibliotecarios());
         }
 
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
@@ -54,6 +56,7 @@ namespace MundoNovo.Controllers
         }
 
         // GET: Bibliotecarios/Create
+        [AllowAnonymous]
         public ActionResult Create()
         {
             return View();
