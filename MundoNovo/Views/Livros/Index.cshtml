@@ -1,16 +1,15 @@
-﻿@model IEnumerable<MundoNovo.Models.Livro>
+﻿@model List<MundoNovo.Models.Livro>
 @using MundoNovo.Models
-
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/Template.cshtml";
 }
 
 <h2>Catálogo</h2>
 
 <p>
     @Html.ActionLink("Cadastrar Livro", "Create", "Livros", null, new { @class = "btn btn-primary" })<span>
-        @Html.ActionLink("Cadastrar Categoria", "Create", "Categorias", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("Cadastrar Categoria", "Create", "Categorias", null, new { @class = "btn btn-primary" })
     </span>
 </p>
 
@@ -35,26 +34,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.titulo)
+            Título
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.autor)
+            Autor
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ano)
+            Ano
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.descricao)
+            Descrição
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.categoria)
+            Categoria
         </th>
+        <th></th>
     </tr>
-
     @if (Model != null)
     {
-
-        @foreach (Livro item in Model)
+        foreach (Livro item in Model)
         {
             <tr>
                 <td>
@@ -108,4 +106,6 @@
             </tr>
         }
     }
+
+
 </table>
