@@ -8,34 +8,30 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-  @*  @if (HttpContext.Current.Session["GuidId"] == null)
+    @*@if (HttpContext.Current.Session["GuidId"] == null)
     {
         Response.Redirect("~/Bibliotecarios/Login");
     }*@
-
-  
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <li class="nav-item">
-                        @Html.ActionLink("Listar Livros", "Index", "Livros", null, new { @class = "nav-link", @style = "color:white;" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Cadastrar livro", "Create", "Livros", null, new { @class = "nav-link", @style = "color:white;" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Usuários", "Index", "Bibliotecarios", null, new { @class = "nav-link", @style = "color:white;" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Empréstimos", "Index", "Emprestimos", null, new { @class = "nav-link", @style = "color:white;" })
-                    </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Listar Livros", "Index", "Livros", null, new { @class = "nav-link", @style = "color:white;" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Cadastrar livro", "Create", "Livros", null, new { @class = "nav-link", @style = "color:white;" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Usuários", "Index", "Bibliotecarios", null, new { @class = "nav-link", @style = "color:white;" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Empréstimos", "Index", "Emprestimos", null, new { @class = "nav-link", @style = "color:white;" })
+                </li>
                 }
-                </ul>
-         
+            </ul>
             <div class="form-inline my-2 my-lg-0">
                 @Html.ActionLink("Sair", "Sair", "Bibliotecarios", null, new { @class = "nav-link", @style = "color:white;" })
             </div>
