@@ -57,6 +57,7 @@ namespace MundoNovo.Controllers
         public ActionResult Sair()
         {
             Sessao.ReiniciarSessao();
+            // FormsAuthentication.SignOut();
             return View("Login");
         }
 
