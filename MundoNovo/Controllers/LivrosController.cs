@@ -14,14 +14,14 @@ namespace MundoNovo.Controllers
         //Buscar livro
         public ActionResult Busca(string busca)
         {
-            List<Livro> livros = LivroDAO.BuscarLivroPorNome(busca);
+            List<Livro> livros = LivroDAO.BuscarLivroPorNome(busca, User.Identity.Name);
             if (livros.Count() == 0)
             {
                 ViewBag.resultado = "Livro não encontrado";
-                ViewBag.TodosLivros = LivroDAO.ListarLivros();
+                ViewBag.TodosLivros = LivroDAO.ListarLivros(User.Identity.Name);
                 return View("Index");
             }
-            ViewBag.Livros = LivroDAO.BuscarLivroPorNome(busca);
+            ViewBag.Livros = livros;
             return View(livros);
 
         }
@@ -30,7 +30,7 @@ namespace MundoNovo.Controllers
         // GET: Livros
         public ActionResult Index()
         {
-            return View(LivroDAO.ListarLivros());
+            return View(LivroDAO.ListarLivros(User.Identity.Name));
         }
 
         // GET: Livros/Details/5

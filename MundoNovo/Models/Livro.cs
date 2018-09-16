@@ -28,5 +28,8 @@ namespace MundoNovo.Models
 
         [Display(Name = "Descrição")]
         public string descricao { get; set; }
+
+        public Bibliotecario bibliotecario { get; set; }
+
     }
 }

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using MundoNovo.Models;
 using MundoNovo.DAL;
 using MundoNovo.Utils;
+using System.Web.Security;
 
 namespace MundoNovo.Controllers
 {
@@ -30,6 +31,7 @@ namespace MundoNovo.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Entrar([Bind(Include = "login,senha")] Bibliotecario bibliotecario)
         {
             int loginId = BibliotecarioDAO.Login(bibliotecario);
@@ -40,6 +42,9 @@ namespace MundoNovo.Controllers
                 string guid = Sessao.RetornarGuidId();
                 bibliotecario.guid = guid;
                 BibliotecarioDAO.EditarBibliotecario(bibliotecario);
+
+                //Seta o Cookie de autenticação
+                FormsAuthentication.SetAuthCookie(bibliotecario.login, false);
                 return View("Index", BibliotecarioDAO.ListarBibliotecarios());
             }
             else
@@ -67,6 +72,7 @@ namespace MundoNovo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult Create([Bind(Include = "id,login,senha,nome,matricula")] Bibliotecario bibliotecario)
         {
             if (ModelState.IsValid)

@@ -16,7 +16,7 @@ namespace MundoNovo.Controllers
         // GET: Emprestimos
         public ActionResult Index()
         {
-            return View(EmprestimoDAO.RetonarEmprestimos());
+            return View(EmprestimoDAO.RetonarEmprestimos(User.Identity.Name));
         }
 
         // GET: Emprestimos/Edit/5
