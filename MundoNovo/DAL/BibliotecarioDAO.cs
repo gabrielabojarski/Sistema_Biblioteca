@@ -28,15 +28,16 @@ namespace MundoNovo.DAL
         }
         public static int Login(Bibliotecario bibliotecario)
         {
-            Bibliotecario biblioAux = ctx.Bibliotecarios.FirstOrDefault(x => x.login == bibliotecario.login && x.senha == bibliotecario.senha);
-            if (biblioAux != null)
-            {
-                return biblioAux.id;
-            }
-            else
-            {
-                return 0;
-            }
+            
+             Bibliotecario biblioAux = ctx.Bibliotecarios.FirstOrDefault(x => x.login == bibliotecario.login && x.senha == bibliotecario.senha);
+             if (biblioAux != null)
+             {
+                 return biblioAux.id;
+             }
+             else
+             {
+                 return 0;
+             }
 
         }
 
