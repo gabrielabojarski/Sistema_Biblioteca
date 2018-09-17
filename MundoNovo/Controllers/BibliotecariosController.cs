@@ -41,7 +41,7 @@ namespace MundoNovo.Controllers
 
                 string guid = Sessao.RetornarGuidId();
                 bibliotecario.guid = guid;
-                BibliotecarioDAO.EditarBibliotecario(bibliotecario);
+               // BibliotecarioDAO.EditarBibliotecario(bibliotecario);
 
                 //Seta o Cookie de autenticação
                 FormsAuthentication.SetAuthCookie(bibliotecario.login, false);
@@ -79,7 +79,7 @@ namespace MundoNovo.Controllers
             if (ModelState.IsValid)
             {
                 BibliotecarioDAO.CadastrarBibliotecario(bibliotecario);
-                return RedirectToAction("Index");
+                return RedirectToAction("Login");
             }
 
             return View(bibliotecario);

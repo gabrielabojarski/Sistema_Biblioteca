@@ -25,7 +25,7 @@ namespace MundoNovo.Models
         public string nome { get; set; }
 
         [Display(Name = "Matricula")]
-        [Range(1,500)]
+        [Range(1,2000)]
         public long matricula { get; set; }
 
     }

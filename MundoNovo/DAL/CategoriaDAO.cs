@@ -28,10 +28,22 @@ namespace MundoNovo.DAL
             ctx.SaveChanges();
         }
 
-        public static void EditarCategoria(Categoria categoria)
+        public static bool EditarCategoria(Categoria categoria)
         {
-            ctx.Entry(categoria).State = EntityState.Modified;
-            ctx.SaveChanges();
+            if (categoria != null)
+            {
+                //Puxa novamente o objeto selecionado do banco e altera
+                Categoria c = BuscarCategoriaPorId(categoria.id);
+
+                ctx.Entry(c).CurrentValues.SetValues(categoria);
+                ctx.Entry(c).State = EntityState.Modified;
+                ctx.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public static void RemoverCategoria(Categoria categoria)

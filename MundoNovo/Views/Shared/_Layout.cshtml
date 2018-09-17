@@ -16,8 +16,7 @@
 
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                @if (User.Identity.IsAuthenticated)
-                {
+               
                 <li class="nav-item">
                     @Html.ActionLink("Listar Livros", "Index", "Livros", null, new { @class = "nav-link", @style = "color:white;" })
                 </li>
@@ -30,7 +29,7 @@
                 <li class="nav-item">
                     @Html.ActionLink("Empréstimos", "Index", "Emprestimos", null, new { @class = "nav-link", @style = "color:white;" })
                 </li>
-                }
+                
             </ul>
             <div class="form-inline my-2 my-lg-0">
                 @Html.ActionLink("Sair", "Sair", "Bibliotecarios", null, new { @class = "nav-link", @style = "color:white;" })
