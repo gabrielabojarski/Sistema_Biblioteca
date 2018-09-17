@@ -15,6 +15,8 @@ namespace MundoNovo.Models
 
         public Livro livro { get; set; }
         public Bibliotecario bibliotecario { get; set; }
+
+        [DataType(DataType.Currency)]
         public double valor { get; set; }
         public string dataPrazo { get; set; }
         public string dataDevolucao { get; set; }
