@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using SistemaMundoNovo.Models;
+using SistemaMundoNovo.Utils;
 
 namespace SistemaMundoNovo.Controllers
 {
@@ -48,6 +49,12 @@ namespace SistemaMundoNovo.Controllers
         {
             if (ModelState.IsValid)
             {
+                // identificando bibliotecario logado para salvar o livro
+                ApplicationUser usuario = UsuarioUtils.RetornaUsuarioLogado();
+                int idBibliotecarioLogado = usuario._Bibliotecario.BibliotecarioID;
+
+                livro.BibliotecarioID = idBibliotecarioLogado;
+
                 db.Livros.Add(livro);
                 db.SaveChanges();
                 return RedirectToAction("Index");
