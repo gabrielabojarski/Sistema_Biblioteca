@@ -34,6 +34,6 @@ namespace SistemaMundoNovo.Models
 
         public DbSet<Bibliotecario> Bibliotecarios { get; set; }
 
-        public System.Data.Entity.DbSet<SistemaMundoNovo.Models.Livro> Livroes { get; set; }
+        public System.Data.Entity.DbSet<SistemaMundoNovo.Models.Livro> Livros { get; set; }
     }
 }

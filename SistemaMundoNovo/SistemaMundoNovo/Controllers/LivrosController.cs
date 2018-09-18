@@ -13,7 +13,7 @@ namespace SistemaMundoNovo.Controllers
         // GET: Livros
         public ActionResult Index()
         {
-            var livroes = db.Livroes.Include(l => l._Bibliotecario);
+            var livroes = db.Livros.Include(l => l._Bibliotecario);
             return View(livroes.ToList());
         }
 
@@ -24,7 +24,7 @@ namespace SistemaMundoNovo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Livro livro = db.Livroes.Find(id);
+            Livro livro = db.Livros.Find(id);
             if (livro == null)
             {
                 return HttpNotFound();
@@ -48,7 +48,7 @@ namespace SistemaMundoNovo.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Livroes.Add(livro);
+                db.Livros.Add(livro);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -64,7 +64,7 @@ namespace SistemaMundoNovo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Livro livro = db.Livroes.Find(id);
+            Livro livro = db.Livros.Find(id);
             if (livro == null)
             {
                 return HttpNotFound();
@@ -97,7 +97,7 @@ namespace SistemaMundoNovo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Livro livro = db.Livroes.Find(id);
+            Livro livro = db.Livros.Find(id);
             if (livro == null)
             {
                 return HttpNotFound();
@@ -110,8 +110,8 @@ namespace SistemaMundoNovo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Livro livro = db.Livroes.Find(id);
-            db.Livroes.Remove(livro);
+            Livro livro = db.Livros.Find(id);
+            db.Livros.Remove(livro);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
