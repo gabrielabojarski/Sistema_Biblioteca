@@ -31,5 +31,8 @@ namespace SistemaMundoNovo.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Bibliotecario> Bibliotecarios { get; set; }
+
     }
 }
