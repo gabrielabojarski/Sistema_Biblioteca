@@ -27,9 +27,8 @@ namespace SistemaMundoNovo.Models
         public string descricao { get; set; }
 
         // relacionamento 1-1
-        public string bibliotecarioAspNetUserID { get; set; }
-
-        public Bibliotecario _Bibliotecario { get; set; }
+        public int BibliotecarioID { get; set; }
+        public virtual Bibliotecario _Bibliotecario { get; set; }
 
 
     }
