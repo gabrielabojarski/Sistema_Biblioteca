@@ -25,6 +25,16 @@ namespace SistemaMundoNovo.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            // Estrategias de inicializacao do banco
+            
+            // Padrao - Se nao houver banco, cria um
+            //Database.SetInitializer<ApplicationDbContext>(new CreateDatabaseIfNotExists<ApplicationDbContext>());
+
+            // Apaga e recria o banco sempre que rodar o projeto
+            //Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseAlways<ApplicationDbContext>());
+
+            // Apaga e recria o banco se houver mudanca nas models (tabelas)
+            Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
         }
 
         public static ApplicationDbContext Create()
@@ -34,6 +44,6 @@ namespace SistemaMundoNovo.Models
 
         public DbSet<Bibliotecario> Bibliotecarios { get; set; }
 
-        public System.Data.Entity.DbSet<SistemaMundoNovo.Models.Livro> Livros { get; set; }
+        public DbSet<SistemaMundoNovo.Models.Livro> Livros { get; set; }
     }
 }
