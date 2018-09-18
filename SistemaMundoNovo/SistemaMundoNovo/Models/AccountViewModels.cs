@@ -62,8 +62,17 @@ namespace SistemaMundoNovo.Models
         public bool RememberMe { get; set; }
     }
 
+    // ViewModel da tela de cadastro de usuarios
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "Nome")]
+        public string Nome { get; set; }
+
+        [Display(Name = "Matricula")]
+        [Range(1, 2000)]
+        public long Matricula { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
