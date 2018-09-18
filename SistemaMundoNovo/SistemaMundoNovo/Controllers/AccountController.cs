@@ -151,7 +151,20 @@ namespace SistemaMundoNovo.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+
+                    _Bibliotecario = new Bibliotecario
+                    {
+                        Nome = model.Nome,
+                        Matricula = model.Matricula
+                    },
+
+                    UserName = model.Email,
+                    Email = model.Email
+                };
+
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
