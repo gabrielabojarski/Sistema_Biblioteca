@@ -11,19 +11,20 @@ namespace SistemaMundoNovo.Models
     public class Emprestimo
     {
         [Key]
-        public int id { get; set; }
+        public int EmprestimoId { get; set; }
 
-        public Livro livro { get; set; }
-        public Bibliotecario bibliotecario { get; set; }
+        public Livro Livro { get; set; }
+        public int BibliotecarioID { get; set; }
+        public virtual Bibliotecario _Bibliotecario { get; set; }
 
         [DataType(DataType.Currency)]
-        public double valor { get; set; }
-        public string dataPrazo { get; set; }
-        public string dataDevolucao { get; set; }
-        public int status { get; set; }
-        public string cep { get; set; }
-        public string endereco { get; set; }
-        public string nome { get; set; }
+        public double Valor { get; set; }
+        public string DataPrazo { get; set; }
+        public string DataDevolucao { get; set; }
+        public int Status { get; set; }
+        public string Cep { get; set; }
+        public string Endereco { get; set; }
+        public string Nome { get; set; }
         public string Logradouro { get; set; }
         public string Bairro { get; set; }
         public string Localidade { get; set; }

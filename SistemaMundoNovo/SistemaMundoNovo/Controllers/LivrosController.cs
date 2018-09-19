@@ -14,7 +14,8 @@ namespace SistemaMundoNovo.Controllers
         // GET: Livros
         public ActionResult Index()
         {
-            var livroes = db.Livros.Include(l => l.UsuarioUtils.RetornaUsuarioLogado());
+            ApplicationUser b = UsuarioUtils.RetornaUsuarioLogado();
+            var livroes = db.Livros.Include(b.Id);
             return View(livroes.ToList());
         }
 

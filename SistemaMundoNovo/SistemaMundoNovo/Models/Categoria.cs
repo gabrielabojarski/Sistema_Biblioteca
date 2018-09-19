@@ -8,10 +8,10 @@ namespace SistemaMundoNovo.Models
     {
 
         [Key]
-        public int id { get; set; }
+        public int CategoriaId { get; set; }
 
         [Display(Name = "Nome Categoria")]
-        public string nome { get; set; }
+        public string Nome { get; set; }
 
     }
 }
