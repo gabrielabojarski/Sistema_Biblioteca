@@ -14,7 +14,7 @@ namespace SistemaMundoNovo.Controllers
         // GET: Livros
         public ActionResult Index()
         {
-            var livroes = db.Livros.Include(l => l._Bibliotecario);
+            var livroes = db.Livros.Include(l => l.UsuarioUtils.RetornaUsuarioLogado());
             return View(livroes.ToList());
         }
 
@@ -36,7 +36,7 @@ namespace SistemaMundoNovo.Controllers
         // GET: Livros/Create
         public ActionResult Create()
         {
-            ViewBag.BibliotecarioID = new SelectList(db.Bibliotecarios, "BibliotecarioID", "Nome");
+            //ViewBag.BibliotecarioID = new SelectList(db.Bibliotecarios, "BibliotecarioID", "Nome");
             return View();
         }
 
@@ -60,7 +60,7 @@ namespace SistemaMundoNovo.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BibliotecarioID = new SelectList(db.Bibliotecarios, "BibliotecarioID", "Nome", livro.BibliotecarioID);
+           // ViewBag.BibliotecarioID = new SelectList(db.Bibliotecarios, "BibliotecarioID", "Nome", livro.BibliotecarioID);
             return View(livro);
         }
 
@@ -76,7 +76,7 @@ namespace SistemaMundoNovo.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BibliotecarioID = new SelectList(db.Bibliotecarios, "BibliotecarioID", "Nome", livro.BibliotecarioID);
+            //ViewBag.BibliotecarioID = new SelectList(db.Bibliotecarios, "BibliotecarioID", "Nome", livro.BibliotecarioID);
             return View(livro);
         }
 
@@ -93,7 +93,7 @@ namespace SistemaMundoNovo.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.BibliotecarioID = new SelectList(db.Bibliotecarios, "BibliotecarioID", "Nome", livro.BibliotecarioID);
+            //ViewBag.BibliotecarioID = new SelectList(db.Bibliotecarios, "BibliotecarioID", "Nome", livro.BibliotecarioID);
             return View(livro);
         }
 
