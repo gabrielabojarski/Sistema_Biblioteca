@@ -15,7 +15,8 @@ namespace SistemaMundoNovo.Controllers
         public ActionResult Index()
         {
             ApplicationUser b = UsuarioUtils.RetornaUsuarioLogado();
-            var livroes = db.Livros.Include(b.Id);
+            int idBibliotecarioLogado = b._Bibliotecario.BibliotecarioID;
+            var livroes = db.Livros.Include(x => x.BibliotecarioID == idBibliotecarioLogado);
             return View(livroes.ToList());
         }
 
