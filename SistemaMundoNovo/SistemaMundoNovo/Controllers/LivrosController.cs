@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using SistemaMundoNovo.DAL;
 using SistemaMundoNovo.Models;
 using SistemaMundoNovo.Utils;
 
@@ -38,6 +39,9 @@ namespace SistemaMundoNovo.Controllers
         // GET: Livros/Create
         public ActionResult Create()
         {
+            ViewBag.Categorias = new SelectList(
+                CategoriaDAO.ListarCategorias(),
+                "id", "nome");
             //ViewBag.BibliotecarioID = new SelectList(db.Bibliotecarios, "BibliotecarioID", "Nome");
             return View();
         }
@@ -47,8 +51,15 @@ namespace SistemaMundoNovo.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,titulo,autor,ano,descricao,BibliotecarioID")] Livro livro)
+        public ActionResult Create([Bind(Include = "id,titulo,autor,ano,descricao,BibliotecarioID")] Livro livro, int ? Categorias)
         {
+
+            if (Categorias > 0)
+            {
+                Categoria categ = CategoriaDAO.BuscarCategoriaPorId(Categorias);
+                livro.categoria = categ;
+            }
+
             if (ModelState.IsValid)
             {
                 // identificando bibliotecario logado para salvar o livro
@@ -78,6 +89,10 @@ namespace SistemaMundoNovo.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.Categorias = new SelectList(
+               CategoriaDAO.ListarCategorias(),
+               "id", "nome");
             //ViewBag.BibliotecarioID = new SelectList(db.Bibliotecarios, "BibliotecarioID", "Nome", livro.BibliotecarioID);
             return View(livro);
         }
@@ -87,14 +102,25 @@ namespace SistemaMundoNovo.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,titulo,autor,ano,descricao,BibliotecarioID")] Livro livro)
+        public ActionResult Edit([Bind(Include = "id,titulo,autor,ano,descricao,BibliotecarioID")] Livro livro, int Categorias)
         {
+            Livro livroAux = db.Livros.Find(livro);
+            livroAux.ano = livro.ano;
+            livroAux.autor = livro.autor;
+            livroAux.categoria = CategoriaDAO.BuscarCategoriaPorId(Categorias);
+            livroAux.descricao = livro.descricao;
+            livroAux.titulo = livro.titulo;
+
             if (ModelState.IsValid)
             {
                 db.Entry(livro).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.Categorias = new SelectList(
+              CategoriaDAO.ListarCategorias(),
+              "id", "nome");
             //ViewBag.BibliotecarioID = new SelectList(db.Bibliotecarios, "BibliotecarioID", "Nome", livro.BibliotecarioID);
             return View(livro);
         }

@@ -1,0 +1,28 @@
+﻿@model SistemaMundoNovo.Models.Categoria
+
+@{
+    ViewBag.Title = "Detalhes Categoria";
+}
+
+<h2>Detalhes Categoria</h2>
+
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.CategoriaId }, new { @class = "btn btn-warning" }) 
+    </p>
+<p>
+    @Html.ActionLink("Voltar para Lista", "Index")
+</p>
